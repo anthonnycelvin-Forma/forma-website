@@ -2,8 +2,10 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "images"
-public_folder: "/images"
+# Images are sitting at the root of the repo (alongside index.html),
+# so the media library points there instead of a separate "images" folder.
+media_folder: ""
+public_folder: "/"
 
 collections:
   - name: "media_only"
@@ -11,6 +13,6 @@ collections:
     files:
       - label: "Image Library"
         name: "images"
-        file: "images/README.md"
+        file: "README.md"
         fields:
           - { label: "Notes", name: "body", widget: "markdown", required: false }

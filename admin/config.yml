@@ -1,0 +1,16 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "media_only"
+    label: "Site Images"
+    files:
+      - label: "Image Library"
+        name: "images"
+        file: "images/README.md"
+        fields:
+          - { label: "Notes", name: "body", widget: "markdown", required: false }

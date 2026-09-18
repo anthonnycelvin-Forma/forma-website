@@ -85,6 +85,51 @@
   .footer-copy{font-size:.68rem;color:rgba(245,240,232,.3);text-align:right;line-height:1.6;}
 
   @keyframes fadeUp{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
+
+  /* ===== Mobile nav toggle ===== */
+  .nav-toggle-checkbox{display:none;}
+  .nav-toggle{display:none;font-size:1.5rem;line-height:1;cursor:pointer;z-index:110;color:var(--ink);user-select:none;}
+
+  /* ===== Disable decorative cursor on touch devices ===== */
+  @media (hover: none), (pointer: coarse) {
+    body{cursor:auto;}
+    .cursor,.cursor-ring{display:none!important;}
+  }
+
+  @media (max-width: 900px) {
+    nav{padding:18px 24px;}
+    .nav-toggle{display:block;}
+    .nav-links{
+      position:fixed; top:0; right:-100%; width:75%; max-width:320px; height:100vh;
+      background:var(--ink); flex-direction:column; justify-content:center; align-items:center;
+      gap:32px; transition:right .35s ease; z-index:105;
+    }
+    .nav-toggle-checkbox:checked ~ .nav-links{right:0;}
+    .nav-links a{color:var(--paper); font-size:0.9rem;}
+    .nav-cta{margin-top:8px;}
+
+    .port-hero{grid-template-columns:1fr; padding:120px 24px 48px; gap:32px;}
+    .port-title{font-size:clamp(2.8rem,14vw,5rem);}
+
+    .stats-strip{grid-template-columns:repeat(2,1fr); padding:32px 24px; gap:24px 0;}
+    .stat-item{border-right:none; padding:0 16px 20px; border-bottom:1px solid rgba(245,240,232,.1);}
+
+    .filter-bar{padding:20px 24px; overflow-x:auto; flex-wrap:nowrap; -webkit-overflow-scrolling:touch;}
+    .filter-btn{white-space:nowrap;}
+
+    .port-count{padding:14px 24px;}
+
+    .port-grid{grid-template-columns:1fr; gap:2px; padding:2px;}
+    .port-item.wide{grid-column:span 1;}
+    .port-img{min-height:260px;}
+    .port-item.wide .port-img{min-height:260px;}
+
+    .cta-strip{grid-template-columns:1fr; text-align:center; padding:56px 24px; gap:24px;}
+
+    footer{grid-template-columns:1fr; text-align:center; gap:16px; padding:40px 24px;}
+    .footer-links{flex-wrap:wrap; justify-content:center;}
+    .footer-copy{text-align:center;}
+  }
 </style>
 </head>
 <body>
@@ -94,6 +139,8 @@
 
 <nav>
   <a href="index.html" class="nav-logo">FORMA</a>
+  <input type="checkbox" id="navToggle" class="nav-toggle-checkbox">
+  <label for="navToggle" class="nav-toggle" aria-label="Toggle menu">☰</label>
   <ul class="nav-links">
     <li><a href="index.html#work">Work</a></li>
     <li><a href="index.html#services">Services</a></li>
@@ -141,7 +188,7 @@
 
   <!-- ROW 1: Nova (wide) + Crest -->
   <div class="port-item wide" data-cat="brand">
-    <img class="port-img" src="portfolio-img3.png" alt="Nova Skincare">
+    <img class="port-img" src="images/portfolio-img3.png" alt="Nova Skincare">
     <div class="port-badge">★ Featured</div>
     <div class="port-overlay"><div class="port-info">
       <div class="port-tag">Brand Identity</div>
@@ -150,7 +197,7 @@
     </div></div>
   </div>
   <div class="port-item" data-cat="brand">
-    <img class="port-img" src="portfolio-img4.png" alt="Crest Capital">
+    <img class="port-img" src="images/portfolio-img4.png" alt="Crest Capital">
     <div class="port-badge">★ Award Winner</div>
     <div class="port-overlay"><div class="port-info">
       <div class="port-tag">Brand Identity</div>
@@ -161,7 +208,7 @@
 
   <!-- ROW 2: Grove + Arc (wide) -->
   <div class="port-item" data-cat="brand">
-    <img class="port-img" src="portfolio-img5.png" alt="Grove Organics">
+    <img class="port-img" src="images/portfolio-img5.png" alt="Grove Organics">
     <div class="port-overlay"><div class="port-info">
       <div class="port-tag">Brand Identity</div>
       <div class="port-name">Grove Organics — Brand Refresh</div>
@@ -169,7 +216,7 @@
     </div></div>
   </div>
   <div class="port-item wide" data-cat="digital">
-    <img class="port-img" src="portfolio-img6.png" alt="Arc Finance">
+    <img class="port-img" src="images/portfolio-img6.png" alt="Arc Finance">
     <div class="port-badge">★ Featured</div>
     <div class="port-overlay"><div class="port-info">
       <div class="port-tag">Digital &amp; UI</div>
@@ -180,7 +227,7 @@
 
   <!-- ROW 3: Ember + Youvit + Romano -->
   <div class="port-item" data-cat="packaging">
-    <img class="port-img" src="portfolio-img7.png" alt="Ember Coffee">
+    <img class="port-img" src="images/portfolio-img7.png" alt="Ember Coffee">
     <div class="port-badge">★ Award Winner</div>
     <div class="port-overlay"><div class="port-info">
       <div class="port-tag">Packaging</div>
@@ -189,7 +236,7 @@
     </div></div>
   </div>
   <div class="port-item" data-cat="packaging">
-    <img class="port-img" src="portfolio-img8.png" alt="Youvit Collagen">
+    <img class="port-img" src="images/portfolio-img8.png" alt="Youvit Collagen">
     <div class="port-overlay"><div class="port-info">
       <div class="port-tag">Packaging</div>
       <div class="port-name">Youvit Collagen — Packaging Design</div>
@@ -197,7 +244,7 @@
     </div></div>
   </div>
   <div class="port-item" data-cat="brand">
-    <img class="port-img" src="portfolio-img9.png" alt="Romano Gelato">
+    <img class="port-img" src="images/portfolio-img9.png" alt="Romano Gelato">
     <div class="port-overlay"><div class="port-info">
       <div class="port-tag">Brand Identity</div>
       <div class="port-name">Romano Gelato — Full Brand &amp; Store</div>
@@ -207,7 +254,7 @@
 
   <!-- ROW 4: Gilt (wide) + Vela -->
   <div class="port-item wide" data-cat="print">
-    <img class="port-img" src="portfolio-img10.png" alt="Gilt Magazine">
+    <img class="port-img" src="images/portfolio-img10.png" alt="Gilt Magazine">
     <div class="port-badge">★ Award Winner</div>
     <div class="port-overlay"><div class="port-info">
       <div class="port-tag">Print &amp; Editorial</div>
@@ -216,7 +263,7 @@
     </div></div>
   </div>
   <div class="port-item" data-cat="digital">
-    <img class="port-img" src="portfolio-img11.png" alt="Vela Travel">
+    <img class="port-img" src="images/portfolio-img11.png" alt="Vela Travel">
     <div class="port-overlay"><div class="port-info">
       <div class="port-tag">Digital &amp; UI</div>
       <div class="port-name">Vela Travel — App &amp; Web Design</div>
@@ -226,7 +273,7 @@
 
   <!-- ROW 5: Lune (wide) + Novaterm -->
   <div class="port-item wide" data-cat="campaign">
-    <img class="port-img" src="portfolio-img12.png" alt="Lune Patisserie">
+    <img class="port-img" src="images/portfolio-img12.png" alt="Lune Patisserie">
     <div class="port-overlay"><div class="port-info">
       <div class="port-tag">Campaign</div>
       <div class="port-name">Lune Patisserie — Launch Campaign</div>
@@ -234,7 +281,7 @@
     </div></div>
   </div>
   <div class="port-item" data-cat="digital">
-    <img class="port-img" src="portfolio-img13.png" alt="Novaterm">
+    <img class="port-img" src="images/portfolio-img13.png" alt="Novaterm">
     <div class="port-overlay"><div class="port-info">
       <div class="port-tag">Digital &amp; UI</div>
       <div class="port-name">Novaterm — UI/UX Design</div>
@@ -244,7 +291,7 @@
 
   <!-- ROW 6: Pulse + Oak -->
   <div class="port-item" data-cat="motion">
-    <img class="port-img" src="portfolio-img14.png" alt="Pulse Music">
+    <img class="port-img" src="images/portfolio-img14.png" alt="Pulse Music">
     <div class="port-overlay"><div class="port-info">
       <div class="port-tag">Motion &amp; Brand</div>
       <div class="port-name">Pulse Music — Brand Launch</div>
@@ -252,7 +299,7 @@
     </div></div>
   </div>
   <div class="port-item wide" data-cat="print">
-    <img class="port-img" src="portfolio-img15.png" alt="Oak and Stone">
+    <img class="port-img" src="images/portfolio-img15.png" alt="Oak and Stone">
     <div class="port-overlay"><div class="port-info">
       <div class="port-tag">Print &amp; Editorial</div>
       <div class="port-name">Oak &amp; Stone — Brand Book</div>
@@ -262,7 +309,7 @@
 
   <!-- ROW 7: 3D — Sensai + Booth + Interior -->
   <div class="port-item" data-cat="3d">
-    <img class="port-img" src="portfolio-img16.png" alt="Sensai Exhibition" style="object-position:center top;">
+    <img class="port-img" src="images/portfolio-img16.png" alt="Sensai Exhibition" style="object-position:center top;">
     <div class="port-overlay"><div class="port-info">
       <div class="port-tag">3D &amp; Visualisation</div>
       <div class="port-name">Sensai — Retail Exhibition 3D</div>
@@ -270,7 +317,7 @@
     </div></div>
   </div>
   <div class="port-item" data-cat="3d">
-    <img class="port-img" src="portfolio-img17.png" alt="Modern Stand Booth">
+    <img class="port-img" src="images/portfolio-img17.png" alt="Modern Stand Booth">
     <div class="port-overlay"><div class="port-info">
       <div class="port-tag">3D &amp; Visualisation</div>
       <div class="port-name">Modern Stand — Exhibition Booth 3D</div>
@@ -278,7 +325,7 @@
     </div></div>
   </div>
   <div class="port-item" data-cat="3d">
-    <img class="port-img" src="portfolio-img18.png" alt="Interior Design">
+    <img class="port-img" src="images/portfolio-img18.png" alt="Interior Design">
     <div class="port-overlay"><div class="port-info">
       <div class="port-tag">3D &amp; Visualisation</div>
       <div class="port-name">Residential Interior — 3D Concept</div>

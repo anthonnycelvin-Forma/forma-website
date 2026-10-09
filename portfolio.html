@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FORMA — Full Portfolio</title>
+<title>FORMA — Portfolio</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230d0d0d'/%3E%3Ctext x='5' y='24' font-family='serif' font-size='22' font-weight='bold' fill='%23c94b2c'%3EF%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@
   .port-hero{padding:130px 48px 64px;border-bottom:1px solid var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;}
   .port-label{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rust);font-weight:500;display:flex;align-items:center;gap:12px;margin-bottom:20px;}
   .port-label::before{content:'';width:24px;height:1px;background:var(--rust);}
-  .port-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,8vw,9rem);line-height:.88;letter-spacing:.02em;animation:fadeUp .8s ease .2s both;}
+  .port-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.4rem,6.6vw,7.5rem);line-height:.88;letter-spacing:.02em;animation:fadeUp .8s ease .2s both;}
   .port-title em{font-family:'DM Serif Display',serif;font-style:italic;color:var(--rust);display:block;}
   .port-hero-right{animation:fadeUp .8s ease .4s both;padding-bottom:8px;}
   .port-desc{font-size:1rem;line-height:1.8;color:var(--mist);font-weight:300;max-width:420px;margin-bottom:32px;}
@@ -38,7 +38,7 @@
   .port-meta span{color:var(--rust);font-family:'Bebas Neue',sans-serif;font-size:1.1rem;}
 
   /* Stats strip */
-  .stats-strip{background:var(--ink);color:var(--paper);padding:48px;display:grid;grid-template-columns:repeat(4,1fr);}
+  .stats-strip{background:var(--ink);color:var(--paper);padding:48px;display:grid;grid-template-columns:repeat(3,1fr);}
   .stat-item{padding:0 40px;border-right:1px solid rgba(245,240,232,.1);}
   .stat-item:first-child{padding-left:0;}.stat-item:last-child{border-right:none;}
   .stat-number{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--rust);letter-spacing:.02em;line-height:1;margin-bottom:8px;}
@@ -53,22 +53,86 @@
   .port-count{padding:18px 48px;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mist);font-weight:500;border-bottom:1px solid var(--cream);}
   .port-count b{color:var(--rust);font-family:'Bebas Neue',sans-serif;font-size:1rem;font-weight:400;}
 
-  /* Grid */
-  .port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding:3px;}
-  .port-item{position:relative;overflow:hidden;cursor:pointer;opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;}
+  /* Grid — thumbnail cards with FORMA's editorial serif + a featured tile */
+  .port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 28px;padding:0 48px 20px;}
+  .port-item{position:relative;cursor:pointer;opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;}
   .port-item.visible{opacity:1;transform:translateY(0);}.port-item.hidden{display:none;}
-  .port-item.wide{grid-column:span 2;}
-  .port-img{width:100%;height:100%;min-height:300px;object-fit:cover;display:block;transition:transform .6s ease;}
-  .port-item.wide .port-img{min-height:360px;}
-  .port-item:hover .port-img{transform:scale(1.05);}
-  .port-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,13,13,.92) 0%,rgba(13,13,13,.15) 55%,transparent 100%);opacity:0;transition:opacity .35s;display:flex;align-items:flex-end;padding:28px;}
-  .port-item:hover .port-overlay{opacity:1;}
-  .port-badge{position:absolute;top:18px;right:18px;background:var(--gold);color:var(--ink);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;padding:5px 10px;opacity:0;transition:opacity .35s;}
-  .port-item:hover .port-badge{opacity:1;}
-  .port-info{color:var(--paper);}
-  .port-tag{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--rust);margin-bottom:5px;font-weight:500;}
-  .port-name{font-family:'DM Serif Display',serif;font-size:1.2rem;font-style:italic;line-height:1.25;margin-bottom:6px;}
-  .port-year{font-size:.65rem;color:rgba(245,240,232,.5);letter-spacing:.12em;}
+  .port-item.featured{grid-column:span 2;}
+
+  .port-thumb{position:relative;overflow:hidden;border-radius:14px;aspect-ratio:4/3;background:var(--stone,#e4ddd0);border-top:2px solid transparent;transition:border-color .3s ease;}
+  .port-item:hover .port-thumb{border-top-color:var(--rust);}
+  .port-item.featured .port-thumb{aspect-ratio:16/9;}
+  .port-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+  .port-item:hover .port-img{transform:scale(1.06);}
+
+  /* Gradient project tile (no image yet) */
+  .port-tile .port-gradient{position:absolute;inset:0;transition:transform .6s ease;}
+  .port-item:hover .port-tile .port-gradient{transform:scale(1.06);}
+  .port-tile .port-gradient.purple{background:linear-gradient(45deg, #1a0a2e 0%, #5b2a86 55%, #b07cd8 100%);}
+  .port-tile .port-decor{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:4rem;color:rgba(255,255,255,.14);letter-spacing:.05em;pointer-events:none;}
+
+  .port-info{padding-top:16px;}
+  .port-name{font-family:'DM Serif Display',serif;font-style:italic;font-size:1.25rem;line-height:1.3;margin-bottom:6px;color:var(--ink);transition:color .3s ease;}
+  .port-item.featured .port-name{font-size:1.5rem;}
+  .port-item:hover .port-name{color:var(--rust);}
+  .port-meta-row{display:flex;align-items:center;gap:8px;}
+  .port-tag{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#8a8477;font-weight:500;transition:color .3s ease;}
+  .port-item:hover .port-tag{color:var(--rust);}
+  .port-year{font-size:.7rem;color:#8a8477;}
+  .port-dot{color:#c8c1b2;}
+
+
+  /* Project placeholders, video cards and gallery indicators */
+  .port-placeholder,.port-video-poster{display:flex;align-items:center;justify-content:center;color:#fff;}
+  .port-placeholder-label{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5vw,5.5rem);letter-spacing:.08em;color:rgba(255,255,255,.15);text-align:center;padding:20px;}
+  .port-placeholder.brown{background:linear-gradient(135deg,#1a0f0a 0%,#4a2a1d 55%,#7a5138 100%);}
+  .port-placeholder.blue-dark{background:linear-gradient(135deg,#061524 0%,#0b2c4d 55%,#15547d 100%);}
+  .port-placeholder.maroon{background:linear-gradient(135deg,#21070d 0%,#5a1424 55%,#8e2e42 100%);}
+  .port-placeholder.packaging-six{background:linear-gradient(135deg,#17120d 0%,#6b4d2b 55%,#b7925f 100%);}
+  .port-placeholder.social-three{background:linear-gradient(135deg,#19080f 0%,#6d2239 55%,#b86a7f 100%);}
+  .port-placeholder.ui-three{background:linear-gradient(135deg,#071821 0%,#164c62 55%,#4d9cb3 100%);}
+  .port-video-poster.motion-one{background:linear-gradient(135deg,#111 0%,#34313e 50%,#c94b2c 100%);}
+  .port-video-poster.motion-two{background:linear-gradient(135deg,#0a1720 0%,#153a4d 55%,#d4a847 100%);}
+  .play-badge{position:absolute;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(245,240,232,.92);color:var(--ink);font-size:1rem;z-index:2;padding-left:3px;box-shadow:0 10px 30px rgba(0,0,0,.16);}
+  .media-badge{position:absolute;right:12px;bottom:12px;background:rgba(13,13,13,.78);color:var(--paper);padding:7px 10px;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;z-index:3;}
+  .media-thumb{background:linear-gradient(135deg,#111 0%,#34271f 52%,#8b553c 100%);}
+  .media-thumb.brand-tone{background:linear-gradient(135deg,#17110d 0%,#4a2a1d 55%,#7a5138 100%);}
+  .media-thumb.motion-tone{background:linear-gradient(135deg,#101014 0%,#2e2c35 55%,#71402f 100%);}
+  .media-thumb.packaging-tone{background:linear-gradient(135deg,#17120d 0%,#5d452e 55%,#9b7950 100%);}
+  .media-thumb.social-tone{background:linear-gradient(135deg,#1f0911 0%,#611d34 55%,#99455d 100%);}
+  .media-thumb.ui-tone{background:linear-gradient(135deg,#071821 0%,#164c62 55%,#4d9cb3 100%);}
+  .media-thumb.visual-tone{background:linear-gradient(135deg,#111 0%,#313131 55%,#7c6857 100%);}
+  .thumb-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,4rem);letter-spacing:.07em;text-align:center;color:rgba(255,255,255,.16);z-index:0;}
+  .media-thumb .port-img{position:relative;z-index:1;opacity:0;}
+  .media-thumb .port-img.loaded{opacity:1;}
+
+  /* Lightbox */
+  .lightbox{position:fixed;inset:0;background:rgba(13,13,13,.94);z-index:200;display:flex;align-items:center;justify-content:center;padding:48px;opacity:0;pointer-events:none;transition:opacity .3s ease;}
+  .lightbox.open{opacity:1;pointer-events:auto;}
+  .lightbox-inner{max-width:1100px;width:100%;max-height:90vh;display:flex;flex-direction:column;align-items:center;transform:scale(.96);transition:transform .3s ease;}
+  .lightbox.open .lightbox-inner{transform:scale(1);}
+  .lightbox-img,.lightbox-video{max-width:100%;max-height:74vh;object-fit:contain;border-radius:4px;background:#111;}
+  .lightbox-video{display:none;width:auto;}
+  .lightbox-message{display:none;color:var(--paper);padding:40px 24px;border:1px solid rgba(245,240,232,.18);width:min(680px,100%);text-align:center;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;}
+  .lightbox-placeholder{display:none;width:min(900px,100%);height:min(64vh,620px);border-radius:4px;align-items:center;justify-content:center;overflow:hidden;}
+  .lightbox-placeholder .port-placeholder-label{font-size:clamp(4rem,12vw,10rem);}
+  .lightbox-counter{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,240,232,.38);margin-top:8px;}
+  .lightbox-cap{color:var(--paper);text-align:center;margin-top:20px;}
+  .lightbox-name{font-size:1.15rem;font-weight:600;margin-bottom:4px;}
+  .lightbox-meta{font-size:.75rem;color:rgba(245,240,232,.55);}
+  .lightbox-close{position:absolute;top:28px;right:36px;color:var(--paper);font-size:1.8rem;line-height:1;cursor:pointer;background:none;border:none;padding:8px;}
+  .lightbox-close:hover{color:var(--rust);}
+  .lightbox-prev,.lightbox-next{position:absolute;top:50%;transform:translateY(-50%);color:var(--paper);font-size:2rem;background:none;border:none;cursor:pointer;padding:12px 18px;opacity:.6;transition:opacity .2s;}
+  .lightbox-prev:hover,.lightbox-next:hover{opacity:1;}
+  .lightbox-prev{left:8px;}
+  .lightbox-next{right:8px;}
+  .port-thumb{cursor:default;}
+  .port-thumb.previewable{cursor:zoom-in;}
+
+  @media (max-width: 640px){
+    .lightbox{padding:20px;}
+    .lightbox-prev,.lightbox-next{padding:8px 10px;font-size:1.5rem;}
+  }
 
   /* CTA */
   .cta-strip{background:var(--ink);padding:80px 48px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;margin-top:3px;}
@@ -98,7 +162,10 @@
 
   @media (max-width: 900px) {
     nav{padding:18px 24px;}
-    .nav-toggle{display:block;}
+    .nav-toggle { display: block; font-size: 0; padding: 12px; margin: -12px; }
+    .nav-toggle::before { content: '☰'; font-size: 1.6rem; line-height: 1; }
+    .nav-toggle-checkbox:checked ~ .nav-toggle { color: var(--paper); }
+    .nav-toggle-checkbox:checked ~ .nav-toggle::before { content: '✕'; font-size: 1.3rem; }
     .nav-links{
       position:fixed; top:0; right:-100%; width:75%; max-width:320px; height:100vh;
       background:var(--ink); flex-direction:column; justify-content:center; align-items:center;
@@ -109,27 +176,43 @@
     .nav-cta{margin-top:8px;}
 
     .port-hero{grid-template-columns:1fr; padding:120px 24px 48px; gap:32px;}
-    .port-title{font-size:clamp(2.8rem,14vw,5rem);}
+    .port-title{font-size:clamp(2.6rem,12vw,4.5rem);}
 
     .stats-strip{grid-template-columns:repeat(2,1fr); padding:32px 24px; gap:24px 0;}
     .stat-item{border-right:none; padding:0 16px 20px; border-bottom:1px solid rgba(245,240,232,.1);}
 
     .filter-bar{padding:20px 24px; overflow-x:auto; flex-wrap:nowrap; -webkit-overflow-scrolling:touch;}
-    .filter-btn{white-space:nowrap;}
+    .filter-btn{white-space:nowrap;padding:12px 20px;}
 
     .port-count{padding:14px 24px;}
 
     .port-grid{grid-template-columns:1fr; gap:2px; padding:2px;}
-    .port-item.wide{grid-column:span 1;}
     .port-img{min-height:260px;}
-    .port-item.wide .port-img{min-height:260px;}
+    .port-grid{grid-template-columns:repeat(2,1fr);gap:28px 18px;padding:0 24px 20px;}
+    .port-item.featured{grid-column:span 2;}
+    .port-item.featured .port-thumb{aspect-ratio:4/3;}
+    .port-item.featured .port-name{font-size:1.15rem;}
 
     .cta-strip{grid-template-columns:1fr; text-align:center; padding:56px 24px; gap:24px;}
 
     footer{grid-template-columns:1fr; text-align:center; gap:16px; padding:40px 24px;}
-    .footer-links{flex-wrap:wrap; justify-content:center;}
+    .footer-links{flex-wrap:wrap; justify-content:center; gap:4px 20px;}
+    .footer-links a{display:inline-block; padding:12px 0;}
     .footer-copy{text-align:center;}
   }
+
+  @media (max-width: 640px){
+    .port-grid{grid-template-columns:1fr;gap:28px;padding:0 20px 20px;}
+    .port-item.featured{grid-column:span 1;}
+    .port-item.featured .port-thumb{aspect-ratio:4/3;}
+    .filter-bar{top:62px;padding-left:20px;padding-right:20px;}
+    .port-count{padding-left:20px;padding-right:20px;}
+    .lightbox{padding:16px;}
+    .lightbox-prev,.lightbox-next{top:auto;bottom:24px;transform:none;background:rgba(13,13,13,.65);}
+    .lightbox-prev{left:16px;}
+    .lightbox-next{right:16px;}
+  }
+
 </style>
 </head>
 <body>
@@ -142,11 +225,11 @@
   <input type="checkbox" id="navToggle" class="nav-toggle-checkbox">
   <label for="navToggle" class="nav-toggle" aria-label="Toggle menu">☰</label>
   <ul class="nav-links">
-    <li><a href="index.html#work">Work</a></li>
+    <li><a href="index.html#how-it-works">How It Works</a></li>
     <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#work">Work</a></li>
     <li><a href="index.html#about">About</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
-    <li><a href="index.html#contact" class="nav-cta">Start a Project</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Talk to FORMA</a></li>
   </ul>
 </nav>
 
@@ -154,198 +237,306 @@
 <section class="port-hero">
   <div>
     <p class="port-label">Our Work</p>
-    <h1 class="port-title">Full<br><em>Portfolio</em></h1>
+    <h1 class="port-title">Portfolio</h1>
   </div>
   <div class="port-hero-right">
-    <p class="port-desc">Every project is a partnership. Here's what we've built together — identities, campaigns, experiences and everything in between.</p>
-    <p class="port-meta"><span>240</span> Projects Delivered &nbsp;·&nbsp; 2021–2026</p>
+    <p class="port-desc">A curated selection of projects across brand identity, motion design, packaging &amp; printing, social media, UX/UI and 3D visualisation.</p>
+    <p class="port-meta"><span>100+</span> Projects Delivered &nbsp;·&nbsp; 2021–2026</p>
   </div>
 </section>
 
 <!-- Stats -->
 <div class="stats-strip">
-  <div class="stat-item"><div class="stat-number">240</div><div class="stat-label">Projects Delivered</div></div>
-  <div class="stat-item"><div class="stat-number">16</div><div class="stat-label">Featured Works</div></div>
+  <div class="stat-item"><div class="stat-number">100+</div><div class="stat-label">Projects Delivered</div></div>
+  <div class="stat-item"><div class="stat-number">20</div><div class="stat-label">Projects Shown</div></div>
   <div class="stat-item"><div class="stat-number">98%</div><div class="stat-label">Client Retention</div></div>
-  <div class="stat-item"><div class="stat-number">18</div><div class="stat-label">Industry Awards</div></div>
 </div>
 
 <!-- Filters -->
 <div class="filter-bar">
   <button class="filter-btn active" data-filter="all">All Work</button>
   <button class="filter-btn" data-filter="brand">Brand Identity</button>
-  <button class="filter-btn" data-filter="campaign">Campaign</button>
-  <button class="filter-btn" data-filter="digital">Digital &amp; UI</button>
-  <button class="filter-btn" data-filter="packaging">Packaging</button>
-  <button class="filter-btn" data-filter="print">Print &amp; Editorial</button>
-  <button class="filter-btn" data-filter="motion">Motion &amp; Brand</button>
+  <button class="filter-btn" data-filter="motion">Motion Design</button>
+  <button class="filter-btn" data-filter="packaging">Packaging / Printing</button>
+  <button class="filter-btn" data-filter="social">Social Media</button>
+  <button class="filter-btn" data-filter="uiux">UX/UI</button>
   <button class="filter-btn" data-filter="3d">3D &amp; Visualisation</button>
 </div>
 
-<div class="port-count">Showing <b id="countNum">16</b> projects</div>
+<div class="port-count">Showing <b id="countNum">20</b> projects</div>
 
-<div class="port-grid" id="portGrid">
+<div class="port-grid" id="portfolio-grid">
 
-  <!-- ROW 1: Nova (wide) + Crest -->
-  <div class="port-item wide" data-cat="brand">
-    <img class="port-img" src="portfolio-img3.png" alt="Nova Skincare">
-    <div class="port-badge">★ Featured</div>
-    <div class="port-overlay"><div class="port-info">
-      <div class="port-tag">Brand Identity</div>
-      <div class="port-name">Nova Skincare — Complete Brand System</div>
-      <div class="port-year">2025</div>
-    </div></div>
-  </div>
-  <div class="port-item" data-cat="brand">
-    <img class="port-img" src="portfolio-img4.png" alt="Crest Capital">
-    <div class="port-badge">★ Award Winner</div>
-    <div class="port-overlay"><div class="port-info">
-      <div class="port-tag">Brand Identity</div>
-      <div class="port-name">Crest Capital — Visual Identity</div>
-      <div class="port-year">2023</div>
-    </div></div>
+  <!-- BRAND IDENTITY — 4 projects -->
+  <div class="port-item" data-cat="brand" data-gallery="farr-01.png|farr-02.png">
+    <div class="port-thumb media-thumb brand-tone">
+      <div class="thumb-fallback">FARR</div>
+      <img class="port-img" src="farr-01.png" alt="FARR Brand Identity">
+      <span class="media-badge">2 IMAGES</span>
+    </div>
+    <div class="port-info">
+      <div class="port-name">FARR — Brand Identity</div>
+      <div class="port-meta-row"><span class="port-tag">Brand Identity</span></div>
+    </div>
   </div>
 
-  <!-- ROW 2: Grove + Arc (wide) -->
-  <div class="port-item" data-cat="brand">
-    <img class="port-img" src="portfolio-img5.png" alt="Grove Organics">
-    <div class="port-overlay"><div class="port-info">
-      <div class="port-tag">Brand Identity</div>
-      <div class="port-name">Grove Organics — Brand Refresh</div>
-      <div class="port-year">2024</div>
-    </div></div>
-  </div>
-  <div class="port-item wide" data-cat="digital">
-    <img class="port-img" src="portfolio-img6.png" alt="Arc Finance">
-    <div class="port-badge">★ Featured</div>
-    <div class="port-overlay"><div class="port-info">
-      <div class="port-tag">Digital &amp; UI</div>
-      <div class="port-name">Arc Finance — App &amp; Dashboard Design</div>
-      <div class="port-year">2024</div>
-    </div></div>
+  <div class="port-item" data-cat="brand" data-gallery="telkom-iot-01.png|telkom-iot-02.png">
+    <div class="port-thumb media-thumb brand-tone">
+      <div class="thumb-fallback">TELKOM IOT</div>
+      <img class="port-img" src="telkom-iot-01.png" alt="Telkom IoT Platform Brand Identity">
+      <span class="media-badge">2 IMAGES</span>
+    </div>
+    <div class="port-info">
+      <div class="port-name">Telkom IoT Platform — Brand Identity</div>
+      <div class="port-meta-row"><span class="port-tag">Brand Identity</span></div>
+    </div>
   </div>
 
-  <!-- ROW 3: Ember + Youvit + Romano -->
-  <div class="port-item" data-cat="packaging">
-    <img class="port-img" src="portfolio-img7.png" alt="Ember Coffee">
-    <div class="port-badge">★ Award Winner</div>
-    <div class="port-overlay"><div class="port-info">
-      <div class="port-tag">Packaging</div>
-      <div class="port-name">Ember Coffee — Packaging Range</div>
-      <div class="port-year">2024</div>
-    </div></div>
-  </div>
-  <div class="port-item" data-cat="packaging">
-    <img class="port-img" src="portfolio-img8.png" alt="Youvit Collagen">
-    <div class="port-overlay"><div class="port-info">
-      <div class="port-tag">Packaging</div>
-      <div class="port-name">Youvit Collagen — Packaging Design</div>
-      <div class="port-year">2024</div>
-    </div></div>
-  </div>
-  <div class="port-item" data-cat="brand">
-    <img class="port-img" src="portfolio-img9.png" alt="Romano Gelato">
-    <div class="port-overlay"><div class="port-info">
-      <div class="port-tag">Brand Identity</div>
-      <div class="port-name">Romano Gelato — Full Brand &amp; Store</div>
-      <div class="port-year">2022</div>
-    </div></div>
+  <div class="port-item" data-cat="brand" data-gallery="romano-gelato-01.png">
+    <div class="port-thumb media-thumb brand-tone">
+      <div class="thumb-fallback">ROMANO GELATO</div>
+      <img class="port-img" src="romano-gelato-01.png" alt="Romano Gelato Brand Identity">
+    </div>
+    <div class="port-info">
+      <div class="port-name">Romano Gelato — Brand Identity</div>
+      <div class="port-meta-row"><span class="port-tag">Brand Identity</span></div>
+    </div>
   </div>
 
-  <!-- ROW 4: Gilt (wide) + Vela -->
-  <div class="port-item wide" data-cat="print">
-    <img class="port-img" src="portfolio-img10.png" alt="Gilt Magazine">
-    <div class="port-badge">★ Award Winner</div>
-    <div class="port-overlay"><div class="port-info">
-      <div class="port-tag">Print &amp; Editorial</div>
-      <div class="port-name">Gilt Magazine — Annual Edition</div>
-      <div class="port-year">2025</div>
-    </div></div>
-  </div>
-  <div class="port-item" data-cat="digital">
-    <img class="port-img" src="portfolio-img11.png" alt="Vela Travel">
-    <div class="port-overlay"><div class="port-info">
-      <div class="port-tag">Digital &amp; UI</div>
-      <div class="port-name">Vela Travel — App &amp; Web Design</div>
-      <div class="port-year">2025</div>
-    </div></div>
+  <div class="port-item" data-cat="brand" data-gallery="iiko-mazesoba-01.png|iiko-mazesoba-02.png">
+    <div class="port-thumb media-thumb brand-tone">
+      <div class="thumb-fallback">IIKO MAZESOBA</div>
+      <img class="port-img" src="iiko-mazesoba-01.png" alt="Iiko Mazesoba Brand Identity">
+      <span class="media-badge">2 IMAGES</span>
+    </div>
+    <div class="port-info">
+      <div class="port-name">Iiko Mazesoba — Brand Identity</div>
+      <div class="port-meta-row"><span class="port-tag">Brand Identity</span></div>
+    </div>
   </div>
 
-  <!-- ROW 5: Lune (wide) + Novaterm -->
-  <div class="port-item wide" data-cat="campaign">
-    <img class="port-img" src="portfolio-img12.png" alt="Lune Patisserie">
-    <div class="port-overlay"><div class="port-info">
-      <div class="port-tag">Campaign</div>
-      <div class="port-name">Lune Patisserie — Launch Campaign</div>
-      <div class="port-year">2023</div>
-    </div></div>
-  </div>
-  <div class="port-item" data-cat="digital">
-    <img class="port-img" src="portfolio-img13.png" alt="Novaterm">
-    <div class="port-overlay"><div class="port-info">
-      <div class="port-tag">Digital &amp; UI</div>
-      <div class="port-name">Novaterm — UI/UX Design</div>
-      <div class="port-year">2023</div>
-    </div></div>
+  <!-- MOTION DESIGN — 2 projects -->
+  <div class="port-item" data-cat="motion" data-video="char-motion.mp4">
+    <div class="port-thumb port-video-poster motion-one">
+      <span class="play-badge">▶</span>
+      <div class="port-placeholder-label">CHAR</div>
+      <span class="media-badge">MP4</span>
+    </div>
+    <div class="port-info">
+      <div class="port-name">Char — Motion Design</div>
+      <div class="port-meta-row"><span class="port-tag">Motion Design</span></div>
+    </div>
   </div>
 
-  <!-- ROW 6: Pulse + Oak -->
-  <div class="port-item" data-cat="motion">
-    <img class="port-img" src="portfolio-img14.png" alt="Pulse Music">
-    <div class="port-overlay"><div class="port-info">
-      <div class="port-tag">Motion &amp; Brand</div>
-      <div class="port-name">Pulse Music — Brand Launch</div>
-      <div class="port-year">2026</div>
-    </div></div>
-  </div>
-  <div class="port-item wide" data-cat="print">
-    <img class="port-img" src="portfolio-img15.png" alt="Oak and Stone">
-    <div class="port-overlay"><div class="port-info">
-      <div class="port-tag">Print &amp; Editorial</div>
-      <div class="port-name">Oak &amp; Stone — Brand Book</div>
-      <div class="port-year">2021</div>
-    </div></div>
+  <div class="port-item" data-cat="motion" data-video="bas-motion.mp4">
+    <div class="port-thumb port-video-poster motion-two">
+      <span class="play-badge">▶</span>
+      <div class="port-placeholder-label">BAS</div>
+      <span class="media-badge">MP4</span>
+    </div>
+    <div class="port-info">
+      <div class="port-name">BAS — Motion Design</div>
+      <div class="port-meta-row"><span class="port-tag">Motion Design</span></div>
+    </div>
   </div>
 
-  <!-- ROW 7: 3D — Sensai + Booth + Interior -->
-  <div class="port-item" data-cat="3d">
-    <img class="port-img" src="portfolio-img16.png" alt="Sensai Exhibition" style="object-position:center top;">
-    <div class="port-overlay"><div class="port-info">
-      <div class="port-tag">3D &amp; Visualisation</div>
-      <div class="port-name">Sensai — Retail Exhibition 3D</div>
-      <div class="port-year">2024</div>
-    </div></div>
-  </div>
-  <div class="port-item" data-cat="3d">
-    <img class="port-img" src="portfolio-img17.png" alt="Modern Stand Booth">
-    <div class="port-overlay"><div class="port-info">
-      <div class="port-tag">3D &amp; Visualisation</div>
-      <div class="port-name">Modern Stand — Exhibition Booth 3D</div>
-      <div class="port-year">2024</div>
-    </div></div>
-  </div>
-  <div class="port-item" data-cat="3d">
-    <img class="port-img" src="portfolio-img18.png" alt="Interior Design">
-    <div class="port-overlay"><div class="port-info">
-      <div class="port-tag">3D &amp; Visualisation</div>
-      <div class="port-name">Residential Interior — 3D Concept</div>
-      <div class="port-year">2023</div>
-    </div></div>
+  <!-- PACKAGING / PRINTING — 5 projects -->
+  <div class="port-item" data-cat="packaging" data-gallery="pro-em-packaging-01.png|pro-em-packaging-02.png">
+    <div class="port-thumb media-thumb packaging-tone">
+      <div class="thumb-fallback">PRO EM</div>
+      <img class="port-img" src="pro-em-packaging-01.png" alt="Pro EM Packaging">
+      <span class="media-badge">2 IMAGES</span>
+    </div>
+    <div class="port-info">
+      <div class="port-name">Pro EM — Packaging</div>
+      <div class="port-meta-row"><span class="port-tag">Packaging / Printing</span></div>
+    </div>
   </div>
 
+  <div class="port-item" data-cat="packaging" data-gallery="beauty-hive-packaging-01.png">
+    <div class="port-thumb media-thumb packaging-tone">
+      <div class="thumb-fallback">BEAUTY HIVE</div>
+      <img class="port-img" src="beauty-hive-packaging-01.png" alt="Beauty Hive Packaging">
+    </div>
+    <div class="port-info">
+      <div class="port-name">Beauty Hive — Packaging</div>
+      <div class="port-meta-row"><span class="port-tag">Packaging / Printing</span></div>
+    </div>
+  </div>
+
+  <div class="port-item" data-cat="packaging" data-gallery="befa-calendar-01.png|befa-calendar-02.png|befa-calendar-03.png">
+    <div class="port-thumb media-thumb packaging-tone">
+      <div class="thumb-fallback">BEFA CALENDAR</div>
+      <img class="port-img" src="befa-calendar-01.png" alt="Befa Calendar">
+      <span class="media-badge">3 IMAGES</span>
+    </div>
+    <div class="port-info">
+      <div class="port-name">Befa — Calendar</div>
+      <div class="port-meta-row"><span class="port-tag">Packaging / Printing</span></div>
+    </div>
+  </div>
+
+  <div class="port-item" data-cat="packaging" data-gallery="hokben-calendar-01.png|hokben-calendar-02.png|hokben-calendar-03.png">
+    <div class="port-thumb media-thumb packaging-tone">
+      <div class="thumb-fallback">HOKBEN CALENDAR</div>
+      <img class="port-img" src="hokben-calendar-01.png" alt="HokBen Calendar">
+      <span class="media-badge">3 IMAGES</span>
+    </div>
+    <div class="port-info">
+      <div class="port-name">HokBen — Calendar</div>
+      <div class="port-meta-row"><span class="port-tag">Packaging / Printing</span></div>
+    </div>
+  </div>
+
+  <div class="port-item" data-cat="packaging" data-gallery="mama-bliss-packaging-01.png">
+    <div class="port-thumb media-thumb packaging-tone">
+      <div class="thumb-fallback">MAMA BLISS</div>
+      <img class="port-img" src="mama-bliss-packaging-01.png" alt="Mama Bliss Packaging">
+    </div>
+    <div class="port-info">
+      <div class="port-name">Mama Bliss — Packaging</div>
+      <div class="port-meta-row"><span class="port-tag">Packaging / Printing</span></div>
+    </div>
+  </div>
+
+  <!-- SOCIAL MEDIA — 3 projects -->
+  <div class="port-item" data-cat="social" data-gallery="marked-by-tm-01.png">
+    <div class="port-thumb media-thumb social-tone">
+      <div class="thumb-fallback">MARKED BY TM</div>
+      <img class="port-img" src="marked-by-tm-01.png" alt="Marked by TM Social Media">
+    </div>
+    <div class="port-info">
+      <div class="port-name">Marked by TM — Social Media</div>
+      <div class="port-meta-row"><span class="port-tag">Social Media</span></div>
+    </div>
+  </div>
+
+  <div class="port-item" data-cat="social" data-gallery="rubylicious-01.png">
+    <div class="port-thumb media-thumb social-tone">
+      <div class="thumb-fallback">RUBYLICIOUS</div>
+      <img class="port-img" src="rubylicious-01.png" alt="Rubylicious Social Media">
+    </div>
+    <div class="port-info">
+      <div class="port-name">Rubylicious — Social Media</div>
+      <div class="port-meta-row"><span class="port-tag">Social Media</span></div>
+    </div>
+  </div>
+
+  <div class="port-item" data-cat="social" data-gallery="bos-beauty-of-saira-01.png">
+    <div class="port-thumb media-thumb social-tone">
+      <div class="thumb-fallback">BOS</div>
+      <img class="port-img" src="bos-beauty-of-saira-01.png" alt="BOS Beauty of Saira Social Media">
+    </div>
+    <div class="port-info">
+      <div class="port-name">BOS — Beauty of Saira</div>
+      <div class="port-meta-row"><span class="port-tag">Social Media</span></div>
+    </div>
+  </div>
+
+  <!-- UX/UI — 3 projects -->
+  <div class="port-item" data-cat="uiux" data-gallery="novaterm-01.png">
+    <div class="port-thumb media-thumb ui-tone">
+      <div class="thumb-fallback">NOVATERM</div>
+      <img class="port-img" src="novaterm-01.png" alt="Novaterm UX UI">
+    </div>
+    <div class="port-info">
+      <div class="port-name">Novaterm — UX/UI</div>
+      <div class="port-meta-row"><span class="port-tag">UX/UI</span></div>
+    </div>
+  </div>
+
+  <div class="port-item" data-cat="uiux" data-gallery="copper-king-01.png|copper-king-02.png">
+    <div class="port-thumb media-thumb ui-tone">
+      <div class="thumb-fallback">COPPER KING</div>
+      <img class="port-img" src="copper-king-01.png" alt="Copper King UX UI">
+      <span class="media-badge">2 IMAGES</span>
+    </div>
+    <div class="port-info">
+      <div class="port-name">Copper King — UX/UI</div>
+      <div class="port-meta-row"><span class="port-tag">UX/UI</span></div>
+    </div>
+  </div>
+
+  <div class="port-item" data-cat="uiux" data-gallery="momba-01.png">
+    <div class="port-thumb media-thumb ui-tone">
+      <div class="thumb-fallback">MOMBA</div>
+      <img class="port-img" src="momba-01.png" alt="Momba UX UI">
+    </div>
+    <div class="port-info">
+      <div class="port-name">Momba — UX/UI</div>
+      <div class="port-meta-row"><span class="port-tag">UX/UI</span></div>
+    </div>
+  </div>
+
+  <!-- 3D & VISUALISATION — 3 projects -->
+  <div class="port-item" data-cat="3d" data-gallery="modern-stand-01.png|modern-stand-02.png">
+    <div class="port-thumb media-thumb visual-tone">
+      <div class="thumb-fallback">MODERN STAND</div>
+      <img class="port-img" src="modern-stand-01.png" alt="Modern Stand Exhibition Booth">
+      <span class="media-badge">2 IMAGES</span>
+    </div>
+    <div class="port-info">
+      <div class="port-name">Modern Stand — Exhibition Booth</div>
+      <div class="port-meta-row"><span class="port-tag">3D &amp; Visualisation</span></div>
+    </div>
+  </div>
+
+  <div class="port-item" data-cat="3d" data-gallery="interior-design-01.png|interior-design-02.png">
+    <div class="port-thumb media-thumb visual-tone">
+      <div class="thumb-fallback">INTERIOR DESIGN</div>
+      <img class="port-img" src="interior-design-01.png" alt="Interior Design 3D Visualisation">
+      <span class="media-badge">2 IMAGES</span>
+    </div>
+    <div class="port-info">
+      <div class="port-name">Interior Design — 3D Visualisation</div>
+      <div class="port-meta-row"><span class="port-tag">3D &amp; Visualisation</span></div>
+    </div>
+  </div>
+
+  <div class="port-item" data-cat="3d" data-gallery="cosmetic-popup-booth-01.png|cosmetic-popup-booth-02.png">
+    <div class="port-thumb media-thumb visual-tone">
+      <div class="thumb-fallback">COSMETIC POP-UP</div>
+      <img class="port-img" src="cosmetic-popup-booth-01.png" alt="Cosmetic Pop-up Booth 3D Visualisation">
+      <span class="media-badge">2 IMAGES</span>
+    </div>
+    <div class="port-info">
+      <div class="port-name">Cosmetic Pop-up Booth — 3D Visualisation</div>
+      <div class="port-meta-row"><span class="port-tag">3D &amp; Visualisation</span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lbClose" aria-label="Close">&times;</button>
+  <button class="lightbox-prev" id="lbPrev" aria-label="Previous media">&#8249;</button>
+  <button class="lightbox-next" id="lbNext" aria-label="Next media">&#8250;</button>
+  <div class="lightbox-inner">
+    <img class="lightbox-img" id="lbImg" src="" alt="">
+    <video class="lightbox-video" id="lbVideo" controls playsinline preload="metadata"></video>
+    <div class="lightbox-placeholder" id="lbPlaceholder"><div class="port-placeholder-label" id="lbPlaceholderLabel"></div></div>
+    <div class="lightbox-message" id="lbMessage">Media file not uploaded yet.</div>
+    <div class="lightbox-cap">
+      <div class="lightbox-name" id="lbName"></div>
+      <div class="lightbox-meta" id="lbMeta"></div>
+      <div class="lightbox-counter" id="lbCounter"></div>
+    </div>
+  </div>
 </div>
 
 <!-- CTA -->
 <div class="cta-strip">
-  <div class="cta-title">Ready to create<br>something <strong>remarkable?</strong></div>
-  <a href="index.html#contact" class="btn-cta">Start a Project</a>
+  <div class="cta-title">Need more<br>design <strong>capacity?</strong></div>
+  <a href="index.html#contact" class="btn-cta">Talk to FORMA</a>
 </div>
 
 <footer>
   <div class="footer-logo">FORMA</div>
   <ul class="footer-links">
-    <li><a href="index.html#work">Work</a></li>
+    <li><a href="index.html#how-it-works">How It Works</a></li>
     <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#work">Work</a></li>
     <li><a href="index.html#about">About</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
@@ -357,36 +548,214 @@
   const cursor=document.getElementById('cursor');
   const ring=document.getElementById('cursorRing');
   let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
-  (function anim(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim);})();
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    if(cursor){cursor.style.left=mx+'px';cursor.style.top=my+'px';}
+  });
+  (function anim(){
+    rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+    if(ring){ring.style.left=rx+'px';ring.style.top=ry+'px';}
+    requestAnimationFrame(anim);
+  })();
   document.querySelectorAll('a,button,.port-item').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{cursor.classList.add('hover');ring.classList.add('hover');});
-    el.addEventListener('mouseleave',()=>{cursor.classList.remove('hover');ring.classList.remove('hover');});
+    el.addEventListener('mouseenter',()=>{cursor?.classList.add('hover');ring?.classList.add('hover');});
+    el.addEventListener('mouseleave',()=>{cursor?.classList.remove('hover');ring?.classList.remove('hover');});
   });
 
   // Scroll reveal
   const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),e.target.dataset.delay||0);});
+    entries.forEach(e=>{
+      if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),Number(e.target.dataset.delay)||0);
+    });
   },{threshold:.08});
-  document.querySelectorAll('.port-item').forEach((el,i)=>{el.dataset.delay=(i%3)*80;obs.observe(el);});
+  document.querySelectorAll('.port-item').forEach((el,i)=>{
+    el.dataset.delay=(i%3)*70;
+    obs.observe(el);
+  });
 
-  // Filter
-  const btns=document.querySelectorAll('.filter-btn');
-  const items=document.querySelectorAll('.port-item[data-cat]');
+  // Filtering — supports links such as portfolio.html?filter=brand
+  const btns=Array.from(document.querySelectorAll('.filter-btn'));
+  const items=Array.from(document.querySelectorAll('.port-item[data-cat]'));
   const countEl=document.getElementById('countNum');
+
+  function applyFilter(filter){
+    const valid=['all','brand','motion','packaging','social','uiux','3d'];
+    const f=valid.includes(filter)?filter:'all';
+    btns.forEach(b=>b.classList.toggle('active',b.dataset.filter===f));
+    let n=0;
+    items.forEach(item=>{
+      const show=f==='all'||item.dataset.cat===f;
+      item.classList.toggle('hidden',!show);
+      if(show){item.classList.add('visible');n++;}
+    });
+    countEl.textContent=n;
+  }
+
   btns.forEach(btn=>{
     btn.addEventListener('click',()=>{
-      btns.forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      const f=btn.dataset.filter;
-      let n=0;
-      items.forEach(item=>{
-        if(f==='all'||item.dataset.cat===f){item.classList.remove('hidden');item.classList.add('visible');n++;}
-        else{item.classList.add('hidden');item.classList.remove('visible');}
-      });
-      countEl.textContent=n;
+      applyFilter(btn.dataset.filter);
+      const url=new URL(window.location.href);
+      if(btn.dataset.filter==='all')url.searchParams.delete('filter');
+      else url.searchParams.set('filter',btn.dataset.filter);
+      history.replaceState(null,'',url);
     });
   });
+
+  const initialFilter=new URLSearchParams(window.location.search).get('filter')||'all';
+  applyFilter(initialFilter);
+
+  // Hide missing thumbnail files cleanly and show the built-in project fallback instead.
+  document.querySelectorAll('.media-thumb .port-img').forEach(img=>{
+    const markLoaded=()=>img.classList.add('loaded');
+    const markMissing=()=>img.classList.remove('loaded');
+    img.addEventListener('load',markLoaded);
+    img.addEventListener('error',markMissing);
+    if(img.complete && img.naturalWidth>0) markLoaded();
+  });
+
+  // Lightbox supports single images, multi-image galleries and MP4 videos.
+  (function(){
+    const lb=document.getElementById('lightbox');
+    const lbImg=document.getElementById('lbImg');
+    const lbVideo=document.getElementById('lbVideo');
+    const lbName=document.getElementById('lbName');
+    const lbMeta=document.getElementById('lbMeta');
+    const lbCounter=document.getElementById('lbCounter');
+    const lbMessage=document.getElementById('lbMessage');
+    const lbPlaceholder=document.getElementById('lbPlaceholder');
+    const lbPlaceholderLabel=document.getElementById('lbPlaceholderLabel');
+    const prev=document.getElementById('lbPrev');
+    const next=document.getElementById('lbNext');
+
+    let media=[];
+    let mediaIndex=0;
+    let activeTitle='';
+    let activeMeta='';
+
+    function mediaFor(item){
+      const list=[];
+      const gallery=(item.dataset.gallery||'').split('|').map(s=>s.trim()).filter(Boolean);
+      gallery.forEach(src=>list.push({type:'image',src}));
+      const video=(item.dataset.video||'').trim();
+      if(video)list.push({type:'video',src:video});
+      if(!list.length){
+        const img=item.querySelector('.port-img');
+        if(img)list.push({type:'image',src:img.getAttribute('src')});
+      }
+      if(!list.length){
+        const placeholder=item.querySelector('.port-placeholder');
+        if(placeholder){
+          const label=placeholder.querySelector('.port-placeholder-label')?.textContent.trim()||'';
+          const classes=Array.from(placeholder.classList).filter(c=>c!=='port-thumb'&&c!=='port-placeholder').join(' ');
+          list.push({type:'placeholder',label,classes});
+        }
+      }
+      return list;
+    }
+
+    function render(){
+      if(!media.length)return;
+      const current=media[mediaIndex];
+      lbImg.style.display='none';
+      lbVideo.style.display='none';
+      lbPlaceholder.style.display='none';
+      lbPlaceholder.className='lightbox-placeholder';
+      lbPlaceholderLabel.textContent='';
+      lbMessage.style.display='none';
+      lbVideo.pause();
+      lbVideo.removeAttribute('src');
+      lbVideo.load();
+
+      if(current.type==='video'){
+        lbVideo.src=current.src;
+        lbVideo.style.display='block';
+        lbVideo.load();
+      }else if(current.type==='placeholder'){
+        lbPlaceholder.className='lightbox-placeholder port-placeholder ' + (current.classes||'');
+        lbPlaceholderLabel.textContent=current.label||activeTitle;
+        lbPlaceholder.style.display='flex';
+      }else{
+        lbImg.src=current.src;
+        lbImg.alt=activeTitle;
+        lbImg.style.display='block';
+      }
+
+      lbName.textContent=activeTitle;
+      lbMeta.textContent=activeMeta;
+      lbCounter.textContent=media.length>1 ? `${mediaIndex+1} / ${media.length}` : '';
+      const showArrows=media.length>1;
+      prev.style.display=showArrows?'block':'none';
+      next.style.display=showArrows?'block':'none';
+    }
+
+    lbVideo.addEventListener('error',()=>{
+      lbVideo.style.display='none';
+      lbMessage.textContent='Video file not uploaded yet. Add the MP4 file referenced in this project.';
+      lbMessage.style.display='block';
+    });
+    lbImg.addEventListener('error',()=>{
+      lbImg.style.display='none';
+      lbMessage.textContent='Project image not found. Check the image filename in portfolio.html.';
+      lbMessage.style.display='block';
+    });
+
+    function open(item){
+      const projectMedia=mediaFor(item);
+      if(!projectMedia.length)return;
+      media=projectMedia;
+      mediaIndex=0;
+      activeTitle=item.querySelector('.port-name')?.textContent.trim()||'';
+      activeMeta=item.querySelector('.port-meta-row')?.textContent.replace(/\s+/g,' ').trim()||'';
+      render();
+      lb.classList.add('open');
+      document.body.style.overflow='hidden';
+    }
+
+    function close(){
+      lb.classList.remove('open');
+      lbVideo.pause();
+      document.body.style.overflow='';
+    }
+
+    function step(dir){
+      if(media.length<2)return;
+      mediaIndex=(mediaIndex+dir+media.length)%media.length;
+      render();
+    }
+
+    // Make every project thumbnail previewable. Actual media opens normally;
+    // projects still using a colour placeholder open an enlarged placeholder
+    // until their real project images are uploaded and added to data-gallery.
+    items.forEach(item=>{
+      const thumb=item.querySelector('.port-thumb');
+      if(!thumb || !mediaFor(item).length) return;
+
+      thumb.classList.add('previewable');
+      thumb.setAttribute('role','button');
+      thumb.setAttribute('tabindex','0');
+      const projectName=item.querySelector('.port-name')?.textContent.trim()||'project';
+      thumb.setAttribute('aria-label',`Preview ${projectName}`);
+
+      thumb.addEventListener('click',()=>open(item));
+      thumb.addEventListener('keydown',e=>{
+        if(e.key==='Enter' || e.key===' '){
+          e.preventDefault();
+          open(item);
+        }
+      });
+    });
+
+    document.getElementById('lbClose').addEventListener('click',close);
+    prev.addEventListener('click',()=>step(-1));
+    next.addEventListener('click',()=>step(1));
+    lb.addEventListener('click',e=>{if(e.target===lb)close();});
+    document.addEventListener('keydown',e=>{
+      if(!lb.classList.contains('open'))return;
+      if(e.key==='Escape')close();
+      if(e.key==='ArrowLeft')step(-1);
+      if(e.key==='ArrowRight')step(1);
+    });
+  })();
 </script>
 </body>
 </html>
